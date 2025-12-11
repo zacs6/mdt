@@ -1,11 +1,11 @@
 import { House, Database, FileText, ScrollText, Cog } from "lucide-react";
 
 const sidebarData = [
-  { name: "Dashboard", href: "/", icon: <House />, active: false },
-  { name: "Profiles", href: "/profiles", icon: <Database />, active: true },
-  { name: "Reports", href: "/reports", icon: <FileText />, active: false },
-  { name: "Logs", href: "/logs", icon: <ScrollText />, active: false },
-  { name: "Settings", href: "/settings", icon: <Cog />, active: false },
+  { name: "Dashboard", href: "/", icon: <House /> },
+  { name: "Profiles", href: "/profiles", icon: <Database /> },
+  { name: "Reports", href: "/reports", icon: <FileText /> },
+  { name: "Logs", href: "/logs", icon: <ScrollText /> },
+  { name: "Settings", href: "/settings", icon: <Cog /> },
 ];
 
 export default function Sidebar() {
@@ -17,7 +17,7 @@ export default function Sidebar() {
             <a
               href={item.href}
               className={`flex flex-row h-[6vh] px-8 w-[15vw] items-center hover:bg-neutral-900 transition-colors ${
-                item.active ? "bg-neutral-900" : ""
+                (window.location.pathname === item.href) ? "bg-neutral-900" : ""
               }`}
             >
               {item.icon}

@@ -4,25 +4,25 @@ import { FileText, Save } from "lucide-react";
 
 export default function Profiles() {
   return (
-    <div className="flex flex-row w-full h-full p-8 justify-between">
-      <div className="flex flex-col w-[26%] h-full bg-neutral-800 border-2 border-neutral-700 rounded-sm p-4">
+    <div className="flex flex-row w-full h-full p-4 justify-between">
+      <div className="flex flex-col w-[24%] h-full bg-neutral-800 border-2 border-neutral-700 rounded-sm p-4">
         <Input
           type="text"
           placeholder="Name"
-          className="w-full h-[5vh] border-2 border-neutral-700 rounded-sm mb-2"
+          className="w-full h-[5vh] border-2 border-neutral-700 rounded-sm mb-2 focus:border-0 focus:outline-none"
         />
-        <div className="bg-neutral-800 border-2 border-neutral-700 rounded-sm p-2 mb-2">
+        <div className="bg-neutral-800 hover:bg-neutral-700 cursor-pointer border-2 border-neutral-700 rounded-sm p-2 mb-2">
           <p>Jordan Davis (#ZMS011706)</p>
           <p>Male</p>
           <p>No licenses found</p>
         </div>
-        <div className="bg-neutral-800 border-2 border-neutral-700 rounded-sm p-2 mb-2">
+        <div className="bg-neutral-800 hover:bg-neutral-700 cursor-pointer border-2 border-neutral-700 rounded-sm p-2 mb-2">
           <p>John Doe (#ABC012345)</p>
           <p>Male</p>
           <p>No licenses found</p>
         </div>
       </div>
-      <div className="flex flex-col w-[72%] h-full bg-neutral-800 border-2 border-neutral-700 rounded-sm">
+      <div className="flex flex-col w-[75%] h-full bg-neutral-800 border-2 border-neutral-700 rounded-sm">
         <div className="flex flex-row h-[8vh] w-full justify-between px-4 items-center">
           <div className="flex flex-row">
             <FileText />
