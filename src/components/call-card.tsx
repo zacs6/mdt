@@ -15,7 +15,7 @@ export default function CallCard({
   units: string[];
 }) {
   return (
-    <div className="flex flex-col h-32 w-full p-2 dark:bg-zinc-800 rounded-md border border-zinc-300 dark:border-zinc-700">
+    <div className="flex flex-col h-32 w-full p-2 cursor-pointer dark:bg-zinc-900 dark:hover:bg-zinc-800 rounded-md border border-zinc-300 dark:border-zinc-700">
       <div className="flex flex-row items-center justify-between mb-1">
         <p className="text-sm dark:text-zinc-300">{code}</p>
         <p className="text-sm dark:text-zinc-300">{timeCreated}</p>
