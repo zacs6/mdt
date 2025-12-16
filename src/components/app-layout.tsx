@@ -1,8 +1,21 @@
 import { Outlet } from "react-router";
+import { useEffect } from "react";
+import { useNavigate } from "react-router";
+import { supabase } from "../lib/supabase";
 import Header from "./header";
 import Sidebar from "./sidebar";
 
 export default function AppLayout() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data }) => {
+      if (!data.session) {
+        navigate("/auth");
+      }
+    });
+  }, []);
+
   return (
     <div className="flex flex-col h-full w-full">
       <Header />

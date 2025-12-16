@@ -5,6 +5,13 @@ import { Separator } from "@/components/ui/separator";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group";
 import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import ModeToggle from "./mode-toggle";
 
 export default function Header() {
@@ -31,7 +38,7 @@ export default function Header() {
   });
 
   return (
-    <div className="bg-white dark:bg-zinc-900 border-b border-zinc-300 dark:border-zinc-700 h-24 flex flex-row items-center justify-between px-4">
+    <div className="flex flex-row h-24 items-center justify-between px-4 bg-white dark:bg-zinc-900 border-b border-zinc-300 dark:border-zinc-700">
       <div
         onClick={() => navigate("/dashboard")}
         className="cursor-pointer flex flex-row w-36 items-center justify-center gap-2"
@@ -69,27 +76,35 @@ export default function Header() {
         <div className="flex flex-row items-center gap-4">
           <IconClock className="h-[1.2rem] w-[1.2rem] transition-all text-black dark:text-white" />
           <div className="flex flex-col items-start justify-center">
-            <div className="flex-col">
-              <p className="text-sm text-zinc-500 dark:text-zinc-400">{dateString}</p>
-              <p className="">{timeString}</p>
-            </div>
+            <p className="text-sm text-zinc-500 dark:text-zinc-400">{dateString}</p>
+            <p className="">{timeString}</p>
           </div>
         </div>
         <Separator orientation="vertical" />
 
-        <div className="flex flex-row items-center gap-4">
-          <Avatar>
-            <AvatarImage src="" />
-            <AvatarFallback>JB</AvatarFallback>
-          </Avatar>
-          <div className="flex-col">
-            <p className="text-sm text-zinc-500 dark:text-zinc-400">Chief</p>
-            <p>J. Banks</p>
-          </div>
-          <Button variant="ghost" size="icon">
-            <IconChevronUp className="h-[1.2rem] w-[1.2rem] transition-all text-black dark:text-white" />
-          </Button>
-        </div>
+        <DropdownMenu>
+          <DropdownMenuTrigger>
+            <div className="flex flex-row items-center gap-2 rounded-md p-2 cursor-pointer dark:hover:bg-zinc-800 transition-colors">
+              <Avatar>
+                <AvatarImage src="" />
+                <AvatarFallback>JB</AvatarFallback>
+              </Avatar>
+              <div className="flex flex-col items-start justify-center">
+                <p className="text-sm text-zinc-500 dark:text-zinc-400">Chief</p>
+                <p>J. Banks</p>
+              </div>
+              <IconChevronUp className="h-[1.2rem] w-[1.2rem] transition-all text-black dark:text-white" />
+            </div>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuGroup>
+              <DropdownMenuItem>Profile</DropdownMenuItem>
+              <DropdownMenuItem>Billing</DropdownMenuItem>
+              <DropdownMenuItem>Team</DropdownMenuItem>
+              <DropdownMenuItem>Subscription</DropdownMenuItem>
+            </DropdownMenuGroup>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
     </div>
   );
