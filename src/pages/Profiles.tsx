@@ -1,28 +1,24 @@
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { FileText, Save } from "lucide-react";
+import ProfileCard from "@/components/ProfileCard";
 
 export default function Profiles() {
   return (
-    <div className="flex flex-row w-full h-full p-4 justify-between">
-      <div className="flex flex-col w-[24%] h-full bg-slate-800 border-2 border-slate-700 rounded-sm p-4">
+    <div className="flex flex-row h-[calc(100vh-8vh)] w-[calc(100vw-5vw)] p-4 gap-4">
+      <div className="flex flex-col h-full w-1/4 gap-4">
+      <div className="flex flex-1 flex-col w-full bg-slate-800 border-2 border-slate-700 rounded-sm p-4">
         <Input
           type="text"
           placeholder="Name"
           className="w-full h-[5vh] border-2 border-slate-700 rounded-sm mb-2 focus:border-0 focus:outline-none"
         />
-        <div className="bg-slate-800 hover:bg-slate-700 cursor-pointer border-2 border-slate-700 rounded-sm p-2 mb-2">
-          <p>Jordan Davis (#ZMS011706)</p>
-          <p>Male</p>
-          <p>No licenses found</p>
-        </div>
-        <div className="bg-slate-800 hover:bg-slate-700 cursor-pointer border-2 border-slate-700 rounded-sm p-2 mb-2">
-          <p>John Doe (#ABC012345)</p>
-          <p>Male</p>
-          <p>No licenses found</p>
-        </div>
+        <ProfileCard name="Jordan Davis" gender="Male" licenses="No licenses found" />
+        <ProfileCard name="Ben Williams" gender="Male" licenses="No licenses found" />
       </div>
-      <div className="flex flex-col w-[75%] h-full bg-slate-800 border-2 border-slate-700 rounded-sm">
+      </div>
+      <div className="flex flex-col h-full w-3/4">
+      <div className="flex flex-1 flex-col w-full bg-slate-800 border-2 border-slate-700 rounded-sm">
         <div className="flex flex-row h-[8vh] w-full justify-between px-4 items-center">
           <div className="flex flex-row">
             <FileText />
@@ -73,6 +69,7 @@ export default function Profiles() {
             </div>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );
