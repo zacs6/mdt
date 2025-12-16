@@ -1,0 +1,40 @@
+import { Badge } from "@/components/ui/badge";
+import { IconMapPin, IconShield } from "@tabler/icons-react";
+
+export default function CallCard({
+  code,
+  timeCreated,
+  label,
+  location,
+  units,
+}: {
+  code: string;
+  timeCreated: string;
+  label: string;
+  location: string;
+  units: string[];
+}) {
+  return (
+    <div className="flex flex-col h-32 w-full p-2 dark:bg-zinc-800 rounded-md border border-zinc-300 dark:border-zinc-700">
+      <div className="flex flex-row items-center justify-between mb-1">
+        <p className="text-sm dark:text-zinc-300">{code}</p>
+        <p className="text-sm dark:text-zinc-300">{timeCreated}</p>
+      </div>
+      <div className="flex flex-col flex-1">
+        <p className="text-lg dark:text-zinc-200">{label}</p>
+        <p className="text-md dark:text-zinc-300 flex flex-row items-center gap-1">
+          <IconMapPin size={16} />
+          {location}
+        </p>
+        <div className="flex flex-row gap-2 mt-auto">
+          {units.map((unit) => (
+            <Badge key={unit}>
+              <IconShield />
+              {unit}
+            </Badge>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}

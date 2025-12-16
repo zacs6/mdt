@@ -1,35 +1,30 @@
-import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router";
+import { ThemeProvider } from "@/components/theme-provider";
+
 import "./index.css";
-import Dashboard from "./pages/Dashboard.tsx";
-import Profiles from "./pages/Profiles.tsx";
-import Reports from "./pages/Reports.tsx";
-import Logs from "./pages/Logs.tsx";
-import Settings from "./pages/Settings.tsx";
-import AppLayout from "./components/AppLayout.tsx";
+import AppLayout from "@/components/app-layout";
+import Auth from "@/pages/auth";
+import Dashboard from "@/pages/dashboard";
+import Profiles from "@/pages/profiles";
+import Reports from "@/pages/reports";
+import Settings from "./pages/settings";
 
 createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-      <BrowserRouter>
-        <Routes>
-          {/* PUBLIC ROUTES (No Layout) */}
-          {/* <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} /> */}
+  <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+    <BrowserRouter>
+      <Routes>
+        <Route path="/auth" element={<Auth />} />
 
-          {/* PROTECTED / APP ROUTES (With AppLayout) */}
-          {/* All routes inside here will render inside the <Outlet /> of AppLayout */}
-          <Route element={<AppLayout />}>
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/reports" element={<Reports />} />
-              <Route path="/profiles" element={<Profiles />} />
-              <Route path="/logs" element={<Logs />} />
-              <Route path="/settings" element={<Settings />} />
-          </Route>
+        <Route element={<AppLayout />}>
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/profiles" element={<Profiles />} />
+          <Route path="/reports" element={<Reports />} />
+          <Route path="/settings" element={<Settings />} />
+        </Route>
 
-          {/* Catch-all redirect */}
-          <Route path="*" element={<Navigate to="/dashboard" replace />} />
+        <Route path="*" element={<Navigate to="/dashboard" replace />} />
       </Routes>
-      </BrowserRouter>
-  </StrictMode>
+    </BrowserRouter>
+  </ThemeProvider>
 );

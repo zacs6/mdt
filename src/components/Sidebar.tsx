@@ -1,50 +1,61 @@
-import { House, Database, FileText, ScrollText, Cog } from "lucide-react";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip"
-import { NavLink, useLocation } from "react-router"
+import { useLocation, useNavigate } from "react-router";
+import { IconHome, IconUsers, IconFileText, IconSettings } from "@tabler/icons-react";
 
-const sidebarData = [
-  { name: "Dashboard", href: "/dashboard", icon: House },
-  { name: "Profiles", href: "/profiles", icon: Database },
-  { name: "Reports", href: "/reports", icon: FileText },
-  { name: "Logs", href: "/logs", icon: ScrollText },
-  { name: "Settings", href: "/settings", icon: Cog },
+const SidebarItems = [
+  { name: "Dashboard", page: "/dashboard", icon: <IconHome /> },
+  { name: "Profiles", page: "/profiles", icon: <IconUsers /> },
+  { name: "Reports", page: "/reports", icon: <IconFileText /> },
+  { name: "Settings", page: "/settings", icon: <IconSettings /> },
 ];
 
-export default function Sidebar() {
+function SidebarItem({
+  active = false,
+  item,
+  onClick,
+}: {
+  active?: boolean;
+  item: { name: string; page: string; icon: React.ReactNode };
+  onClick?: () => void;
+}) {
   return (
-    <div className="flex h-[calc(100vh-8vh)] w-[5vw] bg-slate-800 border-r-2 border-slate-700">
-      <ul className="flex flex-col h-full w-full items-center pt-[1vw] gap-2">
-        {sidebarData.map((item) => {
-          const isActive = useLocation().pathname === item.href;
-          const Icon = item.icon;
-          return (
-            <Tooltip delayDuration={300} key={item.name}>
-              <TooltipTrigger asChild>
-                <li className="relative flex w-full items-center justify-center">
-                      {isActive && (
-                        <div className="absolute left-0 h-[3vw] w-1 rounded-tr-md rounded-br-md bg-blue-400"></div>
-                      )}
-                      <NavLink
-                        to={item.href}
-                        className={`flex h-[3vw] w-[3vw] items-center justify-center rounded-sm transition-colors hover:bg-slate-700 ${
-                          isActive ? "bg-slate-700" : ""
-                        }`}
-                      >
-                        <Icon className={`transition-colors ${isActive ? "text-blue-400" : "text-slate-400"}`} />
-                      </NavLink>
-                    </li>
-              </TooltipTrigger>
-              <TooltipContent side="right" sideOffset={-25}>
-                <p>{item.name}</p>
-              </TooltipContent>
-            </Tooltip>
-          );
-        })}
-      </ul>
+    <div
+      onClick={onClick}
+      className={`relative h-12 flex flex-row items-center pl-4 cursor-pointer transition-all duration-300 ease-in-out ${
+        active ? "" : "hover:bg-zinc-100 dark:hover:bg-zinc-800"
+      }`}
+    >
+      <div
+        className={`absolute inset-0 bg-linear-to-r from-emerald-300/40 to-white dark:to-zinc-900 transition-opacity duration-300 ease-in-out ${
+          active ? "opacity-100" : "opacity-0"
+        }`}
+      />
+      <div
+        className={`absolute left-0 w-1 h-full bg-emerald-500 dark:bg-emerald-400 transition-opacity duration-300 ease-in-out ${
+          active ? "opacity-100" : "opacity-0"
+        }`}
+      />
+      <p className="relative z-10 flex flex-row items-center gap-2">
+        {item.icon}
+        {item.name}
+      </p>
+    </div>
+  );
+}
+
+export default function Sidebar() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  return (
+    <div className="bg-white dark:bg-zinc-900 border-r border-zinc-300 dark:border-zinc-700 h-[calc(100vh-6rem)] w-64 shrink-0 flex flex-col">
+      {SidebarItems.map((item, index) => (
+        <SidebarItem
+          key={index}
+          active={location.pathname === item.page}
+          item={item}
+          onClick={() => navigate(item.page)}
+        />
+      ))}
     </div>
   );
 }
