@@ -7,4 +7,10 @@ if (!supabaseUrl || !supabaseKey) {
   throw new Error("Missing Supabase environment variables");
 }
 
-export const supabase = createClient(supabaseUrl, supabaseKey);
+const DEMO_MODE = import.meta.env.VITE_DEMO_MODE === "true";
+
+export const supabase = createClient(supabaseUrl, supabaseKey, {
+  db: {
+    schema: DEMO_MODE ? "demo" : "public",
+  },
+});
