@@ -2,7 +2,7 @@
 
 A real-time Computer Aided Dispatch (CAD) web application simulating mission-critical dispatch systems used by first responders. The project focuses on live, multi-user state synchronization in high-priority environments.
 
-🔗 **Live Read-Only Demo:** https://zms-mdt.vercel.app/
+🔗 **Live Read-Only Demo:** https://zms-mdt.vercel.app/dashboard
 
 ![Status](https://img.shields.io/badge/status-active-success.svg)
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
@@ -59,6 +59,7 @@ The public deployment runs in **read-only demo mode**, enforced at the database 
 ## Getting Started
 
 ### Prerequisites
+
 - Node.js v18+
 - npm or pnpm
 
