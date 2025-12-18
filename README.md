@@ -1,86 +1,92 @@
 # MDT (Mobile Dispatch Terminal)
 
-A real-time Computer Aided Dispatch (CAD) web application for first responders. This project focuses on handling live data synchronization between multiple users (dispatchers and field units) in a high-priority environment.
+A real-time Computer Aided Dispatch (CAD) web application simulating mission-critical dispatch systems used by first responders. The project focuses on live, multi-user state synchronization in high-priority environments.
 
-![Project Status](https://img.shields.io/badge/status-active-success.svg)
+🔗 **Live Read-Only Demo:** https://zms-mdt.vercel.app/
+
+![Status](https://img.shields.io/badge/status-active-success.svg)
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
-## About
+---
 
-This project explores how mission-critical software handles shared state in a real-time environment. Unlike a standard CRUD app where data is static until refreshed, an MDT (Mobile Dispatch Terminal) needs to stay in sync across all clients instantly. If a dispatcher assigns a unit to a call, that unit needs to see the status update immediately.
+## Overview
 
-The UI is designed to be high-contrast and information-dense, simulating the actual terminals used by police and fire departments, while maintaining modern UX standards.
+MDT systems require strict consistency across all connected clients. When a dispatcher assigns a unit to a call, every user must see the update immediately without refresh or polling delays.
+
+This project explores how real-world dispatch software handles shared state, access control, and real-time updates while maintaining a clear, information-dense interface.
+
+The public deployment runs in **read-only demo mode**, enforced at the database level.
+
+---
 
 ## Core Features
 
-- **Live Dispatch Board**:
+- **Live Dispatch Board**
+  Real-time call intake and prioritization without page refreshes.
 
-  - Incoming emergency calls appear instantly without refreshing.
-  - Calls are sorted effectively by priority and severity.
+- **Unit Management**
+  Tracks Police, Fire, and EMS unit status (Available, En Route, Busy).
 
-- **Unit Management**:
+- **Role-Based Views**
+  Dispatcher view with full visibility and unit control; unit view focused on current assignments.
 
-  - Tracks status (Available, Busy, En Route) for Police, Fire, and EMS units.
-  - Dispatchers can drag-and-drop units to assign them to active incidents.
+- **Real-Time Synchronization**
+  WebSocket-powered updates via Supabase Realtime, keeping all clients in sync within milliseconds.
 
-- **Role-Based Views**:
+- **Secure Public Demo**
+  Separate demo schema with database-enforced read-only access using Row Level Security (RLS).
 
-  - **Dispatcher View**: Full control over all calls and units.
-  - **Unit View**: Simplified interface focused on their current assignment and status updates.
-
-- **Real-time Sync**:
-  - Powered by Supabase Realtime (WebSockets).
-  - State is consistent across multiple connected devices in milliseconds.
+---
 
 ## Tech Stack
 
-- **Frontend**: React 19, TypeScript, Vite
-- **Styling**: Tailwind CSS v4, Shadcn UI
-- **Backend Service**: Supabase (PostgreSQL + Auth)
-- **State/Sync**: React Context + Realtime Subscriptions
+- **Frontend:** React 19, TypeScript, Vite
+- **UI:** Tailwind CSS v4, shadcn/ui
+- **Backend:** Supabase (PostgreSQL, Auth, Realtime)
+- **State Management:** React Context + realtime subscriptions
+
+---
+
+## Architecture Highlights
+
+- Separate `demo` schema for public access
+- Database-enforced permissions (no frontend-only security)
+- Real-time event-driven state updates
+- Production-style data modeling for calls, units, and profiles
+
+---
 
 ## Getting Started
 
 ### Prerequisites
-
-- Node.js (v18+)
+- Node.js v18+
 - npm or pnpm
 
 ### Installation
 
-1. **Clone the repo**
-
-   ```bash
+1. Clone the repository
    git clone https://github.com/zacs6/mdt.git
    cd mdt
-   ```
 
-2. **Install dependencies**
-
-   ```bash
+2. Install dependencies
    npm install
-   ```
 
-3. **Setup Environment**
-   Create a `.env` file:
+### Environment Setup
 
-   ```env
-   VITE_SUPABASE_URL=your_supabase_url
-   VITE_SUPABASE_PUBLISHABLE_KEY=your_supabase_anon_key
-   VITE_DEMO_MODE=false
-   ```
+Create a `.env` file with the following values:
 
-4. **Run Locally**
-   ```bash
-   npm run dev
-   ```
+VITE_SUPABASE_URL=your_supabase_url
+VITE_SUPABASE_PUBLISHABLE_KEY=your_supabase_anon_key
+VITE_DEMO_MODE=false
 
-## Future Plans
+### Run Locally
 
-- Interactive Map implementation.
-- Unit-to-Unit messaging system.
-- PDF Report generation for closed incidents.
+npm run dev
 
 ---
 
-_Built by Zac Scott as a showcase of modern web development practices._
+## Future Enhancements
+
+- Interactive map view for active calls and units
+- Unit-to-unit and dispatcher messaging
+- PDF report generation for closed incidents
