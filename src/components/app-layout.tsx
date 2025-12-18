@@ -9,6 +9,8 @@ export default function AppLayout() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    if (import.meta.env.VITE_DEMO_MODE === "true") return;
+
     supabase.auth.getSession().then(({ data }) => {
       if (!data.session) {
         navigate("/auth");
