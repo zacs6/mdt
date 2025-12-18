@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
-import { IconSearch, IconBell, IconClock, IconChevronUp } from "@tabler/icons-react";
+import { IconBell, IconClock, IconChevronUp } from "@tabler/icons-react";
 import { Separator } from "@/components/ui/separator";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
