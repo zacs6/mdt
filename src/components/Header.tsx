@@ -12,10 +12,11 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import ModeToggle from "./mode-toggle";
+import { useAuth } from "@/context/auth-provider";
 
 export default function Header() {
   const navigate = useNavigate();
+  const { user, unit } = useAuth();
   const [date, setDate] = useState(new Date());
 
   useEffect(() => {
@@ -41,7 +42,7 @@ export default function Header() {
     <div className="flex flex-row h-24 items-center justify-between px-4 bg-white dark:bg-zinc-900 border-b border-zinc-300 dark:border-zinc-700">
       <div
         onClick={() => navigate("/dashboard")}
-        className="cursor-pointer flex flex-row w-36 items-center justify-center gap-2"
+        className="cursor-pointer flex flex-row w-36 -ml-5.5 items-center justify-center gap-2"
       >
         <svg
           width="44"
@@ -59,8 +60,7 @@ export default function Header() {
         </svg>
         <p className="text-2xl font-semibold">MDT</p>
       </div>
-      <div className="flex flex-row items-center gap-4">
-        <ModeToggle />
+      <div className="flex flex-row items-center gap-4 absolute right-1/2 translate-x-1/2">
         <InputGroup className="w-100 h-10">
           <InputGroupInput placeholder="Search..." />
           <InputGroupAddon>
@@ -83,25 +83,23 @@ export default function Header() {
         <Separator orientation="vertical" />
 
         <DropdownMenu>
-          <DropdownMenuTrigger>
+          <DropdownMenuTrigger className="group outline-none">
             <div className="flex flex-row items-center gap-2 rounded-md p-2 cursor-pointer dark:hover:bg-zinc-800 transition-colors">
               <Avatar>
                 <AvatarImage src="" />
-                <AvatarFallback>JB</AvatarFallback>
+                <AvatarFallback>U</AvatarFallback>
               </Avatar>
               <div className="flex flex-col items-start justify-center">
-                <p className="text-sm text-zinc-500 dark:text-zinc-400">Chief</p>
-                <p>J. Banks</p>
+                <p className="text-sm text-zinc-500 dark:text-zinc-400">{unit?.role || "User"}</p>
+                <p>{unit?.name || user?.email || "Guest"}</p>
               </div>
-              <IconChevronUp className="h-[1.2rem] w-[1.2rem] transition-all text-black dark:text-white" />
+              <IconChevronUp className="h-[1.2rem] w-[1.2rem] text-black dark:text-white transition-transform duration-200 group-hover:rotate-180 group-aria-expanded:rotate-180" />
             </div>
           </DropdownMenuTrigger>
           <DropdownMenuContent>
             <DropdownMenuGroup>
-              <DropdownMenuItem>Profile</DropdownMenuItem>
-              <DropdownMenuItem>Billing</DropdownMenuItem>
-              <DropdownMenuItem>Team</DropdownMenuItem>
-              <DropdownMenuItem>Subscription</DropdownMenuItem>
+              <DropdownMenuItem>My Profile</DropdownMenuItem>
+              <DropdownMenuItem>Logout</DropdownMenuItem>
             </DropdownMenuGroup>
           </DropdownMenuContent>
         </DropdownMenu>
