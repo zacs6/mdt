@@ -60,14 +60,6 @@ export default function Header() {
         </svg>
         <p className="text-2xl font-semibold">MDT</p>
       </div>
-      <div className="flex flex-row items-center gap-4 absolute right-1/2 translate-x-1/2">
-        <InputGroup className="w-100 h-10">
-          <InputGroupInput placeholder="Search..." />
-          <InputGroupAddon>
-            <IconSearch className="h-[1.2rem] w-[1.2rem] transition-all text-zinc-400 dark:text-zinc-600" />
-          </InputGroupAddon>
-        </InputGroup>
-      </div>
       <div className="flex flex-row items-center gap-4">
         <Button variant="ghost" size="icon">
           <IconBell className="h-[1.2rem] w-[1.2rem] transition-all text-black dark:text-white" />
