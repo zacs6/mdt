@@ -67,6 +67,7 @@ The UI is designed to be high-contrast and information-dense, simulating the act
    ```env
    VITE_SUPABASE_URL=your_supabase_url
    VITE_SUPABASE_PUBLISHABLE_KEY=your_supabase_anon_key
+   VITE_DEMO_MODE=false
    ```
 
 4. **Run Locally**
