@@ -9,7 +9,7 @@ import Auth from "@/pages/auth";
 import Dashboard from "@/pages/dashboard";
 import Profiles from "@/pages/profiles";
 import Reports from "@/pages/reports";
-import Settings from "./pages/settings";
+import Settings from "@/pages/settings";
 
 createRoot(document.getElementById("root")!).render(
   <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">

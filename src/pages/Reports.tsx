@@ -1,4 +1,3 @@
-import { supabase } from "@/lib/supabase";
 import { useState, useEffect } from "react";
 import { Spinner } from "@/components/ui/spinner";
 
